@@ -14,7 +14,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div>
         <img src={logo} alt="Logo" width="450" height="450" />
 
