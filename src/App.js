@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import logo from './ss.svg';
 import './App.css';
 
+import React , {useState } from 'react';
+
 function App() {
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState('');
+
+  const handleAddTask = () =>{
+    setTasks([...tasks, {id: tasks.length + 1, text: newTask}]);
+    setNewTask('');
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+          <img src = {logo} alt = "Logo" width ="450" height = "450" />{/*Use imported logo*/}
+
+    <h1>Task Manager</h1>
+    <ul>
+      {tasks.map((task) => (
+        <li key={task.id}>{task.text}</li>
+      ))}
+    </ul>
+    <input
+      type="text"
+      placeholder="New task"
+      value={newTask}
+      onChange={(e) => setNewTask(e.target.value)}
+    />
+    <button onClick={handleAddTask}>Add Task</button>
+  </div>
   );
 }
 
